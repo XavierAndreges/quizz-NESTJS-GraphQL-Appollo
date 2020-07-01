@@ -1,0 +1,29 @@
+input UserInput {
+    mail: String
+    password: String
+    firstName: String
+    lastName: String
+    photoUrl: String
+    roleName: String
+}
+
+type User {
+  id: Int
+  mail: String
+  firstName: String
+  lastName: String
+  photoUrl: String
+  lastConnectionDate: String
+  creationDate: String
+  roleName: String
+}
+
+type Query {
+  getAllUsers: [User]
+  getOneUser(id: ID!): User
+}
+
+type Mutation {
+    createUser(user: UserInput): User
+    updateUser(userId: ID!, input: UserInput): User
+}

@@ -1,0 +1,60 @@
+scalar Date
+
+type Quizz {
+    id: Int!
+    title: String
+    version: Int
+    description: String
+    lastUpdate: Date
+    creationDate: Date
+    creatorIdUser: Int
+    idCategory: Int
+    requirement: String
+    duration: Int
+    questions: [Question]
+    totalQuestions: Int
+}    
+
+type Question {
+    id: Int!
+    question: String
+    annex: String
+    score: Int
+    idCategory: Int
+    options: [Option]
+}
+
+type Option {
+    id: Int!
+    titleOption: String
+    isCorrect: Int
+}
+
+input Pagination {
+    count: Int!
+    cursor: Int!
+    reverse: Boolean
+}
+
+type PageInfos {
+  totalCount: Int!
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: Int!
+  endCursor: Int!
+  reverse: Boolean
+}
+
+type QuestionList {
+  list: [Question!]!
+  infos: PageInfos!
+}
+
+type Query {
+    quizz(id: ID!): Quizz
+    quizzTest(value: String!): String
+    question(id: ID!): Question
+    questions(quizzId: Int, start: Int, limit: Int): [Question]
+    questionsInfos(quizzId: Int, pagination: Pagination): QuestionList
+    option(id: ID!): Option
+}

@@ -1,0 +1,9 @@
+type Program {
+    id: Int!
+    title: String
+    logoUrl: String
+}    
+
+type Query {
+    getProgramById(id: ID!): Program
+}
